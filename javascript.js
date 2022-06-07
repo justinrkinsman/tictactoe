@@ -12,7 +12,9 @@ document.addEventListener('click', function(e){
         e.target.value = 'X'
         grid.splice(((e.target.id.slice(-1))-1), 1, 'X')
         console.log(grid)
+       // randomO
     }
+    //const randomO = grid[Math.floor(Math.random() * grid.length)];
 })
 
 const gameBoard = (() => {
@@ -26,3 +28,11 @@ const gameBoard = (() => {
     const cell8 = document.getElementById('cell8');
     const cell9 = document.getElementById('cell9');
 })()
+
+const player = (name, selection) => {
+    const sayHello = () => console.log(`My name is ${name} and I choose ${selection}`)
+    return {name, selection, sayHello}
+}
+
+const playerOne = player('justin', 'x')
+playerOne.sayHello()
