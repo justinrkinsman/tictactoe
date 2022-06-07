@@ -42,10 +42,30 @@ const player = (name, selection) => {
 const playerOne = player('justin', 'x')
 playerOne.sayHello()
 
-function playerTwo() {
-    const randomO = grid[Math.floor(Math.random() * grid.length)]
+/*function playerTwo() {
+    gameBoard
+    let newGrid = gameBoard.grid
+    randomO = newGrid[Math.floor(Math.random() * newGrid.length)]
     if (randomO == ''){
        // randomO.textContent = 'O'
         console.log('O')
     }
-}
+}*/
+function playerTwo() {
+document.addEventListener('click', function(e){
+    gameBoard
+    if(e.target && e.target.textContent == ''){
+        e.target.value = 'O'
+        let newGrid = gameBoard.grid
+        newGrid.splice(((e.target.id.slice(-1))-1), 1, 'O')
+        console.log(newGrid)
+       // randomO
+    }
+    playerOne()
+    //const randomO = grid[Math.floor(Math.random() * grid.length)];
+})}
+
+/*let newGrid = gameBoard.grid
+newGrid[Math.floor(Math.random() * grid.length)]
+if (newGrid == ''){
+    console.log('O')*/
