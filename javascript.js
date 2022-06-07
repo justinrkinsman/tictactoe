@@ -1,27 +1,14 @@
-/*let btn = document.getElementById('hello')
-    btn.addEventListener('click', sayHello)
-
-function sayHello(){
-    console.log('Hello')
-}*/
-
-//let grid = ['', '', '', '', '', '', '', '', ''];
-
-document.addEventListener('click', function(e){
+/*document.addEventListener('click', function(e){
     gameBoard
-    if(e.target && e.target.textContent == ''){
+    if(e.target.textContent == ''){
         e.target.value = 'X'
         let newGrid = gameBoard.grid
         newGrid.splice(((e.target.id.slice(-1))-1), 1, 'X')
         console.log(newGrid)
-    }else if (e.target && e.target.textContent == 'O'){
-        e.target.value = 'O'
     }
-       // randomO
        playerTwo()
     }
-    //const randomO = grid[Math.floor(Math.random() * grid.length)];
-)
+)*/
 
 const gameBoard = (() => {
     let grid = []
@@ -42,33 +29,16 @@ const player = (name, selection) => {
     return {name, selection, sayHello}
 }
 
-/*const playerOne = player('justin', 'x')
-playerOne.sayHello()*/
-
-function playerTwo() {
+function playerTurn() {
 document.addEventListener('click', function(e){
-    gameBoard
-    if(e.target && e.target.textContent == ''){
-        e.target.value = 'O'
-        let newGrid = gameBoard.grid
-        newGrid.splice(((e.target.id.slice(-1))-1), 1, 'O')
-    }else if (e.target && e.target.textContent == 'X'){
-        e.target.value = 'X'
-    }
-    playerOne()
-})}
-
-function playerOne() {
-document.addEventListener('click', function(e){
-    gameBoard
-    if(e.target && e.target.textContent == ''){
-        e.target.value = 'X'
+    if(e.target.textContent == ''){
+        e.target.textContent = 'X'
         let newGrid = gameBoard.grid
         newGrid.splice(((e.target.id.slice(-1))-1), 1, 'X')
-       playerTwo()
-    }else if (e.target && e.target.textContent == 'O'){
-        e.target.value = 'O'
-        
+      //  playerTwo()
+      console.log(newGrid)
     }
 })
 }
+
+playerTurn()
