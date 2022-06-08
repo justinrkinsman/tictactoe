@@ -8,22 +8,31 @@ const gameBoard = (() => {
         }}
 })()
 
-const displayController = (() => {
-    
-})
-
 gameBoard.displayGrid()
 
+
+const displayController = (() => {
+    let cells = document.querySelectorAll(`[id^="cell"]`)
+    cells.forEach((cell) => {
+        cell.addEventListener('click', function() {
+            cell.textContent = 'X'
+    })
+    const playerOne = () => {
+    }
+})})
+
+displayController()
+
 const player = () => {
-    const player1 = () => {
+    const playerOne = () => {
         let name = document.getElementById('playerOne').value
         return{name}
     }
-    const player2 = () => {
+    const playerTwo = () => {
         let name = document.getElementById('playerTwo').value
         return{name}
     }
-    return {player1, player2}
+    return {playerOne, playerTwo}
 }
 
 const player1 = player()
@@ -31,8 +40,8 @@ const player2 = player()
 
 let btn1 = document.getElementById('submit1')
 btn1.addEventListener('click', function(){
-    console.log(player1.player1())})
+    console.log(player1.playerOne())})
 
 let btn2 = document.getElementById('submit2')
 btn2.addEventListener('click', function(){
-    console.log(player2.player2())})
+    console.log(player2.playerTwo())})
