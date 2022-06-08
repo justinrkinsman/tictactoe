@@ -15,35 +15,6 @@ const gameBoard = (() => {
 
 gameBoard.displayGrid()
 
-
-/*const displayController = (() => {
-    const playerOne = () => {
-        let cells = document.querySelectorAll(`[id="cell"]`)
-        cells.forEach((cell) => {
-            cell.addEventListener('click', function() {
-                if(cell.textContent == ''){
-                    cell.textContent = 'X'
-                }else if (!(cell.textContent == '')){
-                    cell.textContent = cell.textContent
-                }
-            })
-        })
-    }
-        let cells = document.querySelectorAll(`[id="cell"]`)
-        cells.forEach((cell) => {
-            cell.addEventListener('click', function() {
-                if (cell.textContent == ''){
-                    cell.textContent = 'X'
-                }else if (!(cell.textContent == '')){
-                    cell.textContent = cell.textContent
-                }
-        })
-    const playerTwo = () => {
-        let cell
-    }
-    return{playerOne, playerTwo}
-})})()*/
-
 const displayController = (() => {
     let cells = document.querySelectorAll(`[id="cell"]`)
     function playerOne(){
