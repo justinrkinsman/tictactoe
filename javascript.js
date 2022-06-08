@@ -1,17 +1,5 @@
-/*document.addEventListener('click', function(e){
-    gameBoard
-    if(e.target.textContent == ''){
-        e.target.value = 'X'
-        let newGrid = gameBoard.grid
-        newGrid.splice(((e.target.id.slice(-1))-1), 1, 'X')
-        console.log(newGrid)
-    }
-       playerTwo()
-    }
-)*/
-
 const gameBoard = (() => {
-    let grid = []
+    let grid = [];
     grid.splice(0, 1, (document.getElementById('cell1')));
     grid.splice(1, 1, (document.getElementById('cell2')));
     grid.splice(2, 1, (document.getElementById('cell3')));
@@ -21,33 +9,33 @@ const gameBoard = (() => {
     grid.splice(6, 1, (document.getElementById('cell7')));
     grid.splice(7, 1, (document.getElementById('cell8')));
     grid.splice(8, 1, (document.getElementById('cell9')));
-    return {grid}
+    return {
+        displayGrid: function(){
+            console.log(grid)
+        }}
 })()
 
+gameBoard.displayGrid()
+
 const player = (name, selection) => {
-    const sayHello = () => console.log(`My name is ${name} and I choose ${selection}`)
-    return {name, selection, sayHello}
+    const player1 = () => {
+        let name = document.getElementById('playerOne').value
+        console.log(name)
+    }
+    const player2 = () => {
+        let name = document.getElementById('playerTwo').value
+        console.log(name)
+    }
+    return {name, selection, player1, player2}
 }
 
-function playerTwo() {
-document.addEventListener('click', function(e){
-    if(e.target.textContent == ''){
-        e.target.value = 'O'
-        let newGrid = gameBoard.grid
-        newGrid.splice(((e.target.id.slice(-1))-1), 1, 'O')
-    }
-    playerOne()
-})}
+const player1 = player()
+const player2 = player()
 
-function playerOne() {
-document.addEventListener('click', function(e){
-    if(e.target.textContent == ''){
-        e.target.value = 'X'
-        let newGrid = gameBoard.grid
-        newGrid.splice(((e.target.id.slice(-1))-1), 1, 'X')
-       playerTwo()
-    }
-})
-}
+let btn1 = document.getElementById('submit1')
+btn1.addEventListener('click', function(){
+    player1.player1()})
 
-playerOne()
+let btn2 = document.getElementById('submit2')
+btn2.addEventListener('click', function(){
+    player2.player2()})
