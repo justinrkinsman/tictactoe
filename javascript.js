@@ -45,8 +45,8 @@ gameBoard.displayGrid()
 })})()*/
 
 const displayController = (() => {
-    const playerOne = () => {
-        let cells = document.querySelectorAll(`[id="cell"]`)
+    let cells = document.querySelectorAll(`[id="cell"]`)
+    function playerOne(){
         cells.forEach((cell) => {
             cell.addEventListener('click', function() {
                 if(cell.textContent == ''){
@@ -55,20 +55,19 @@ const displayController = (() => {
                     cell.textContent = cell.textContent
                 }
             })
-    const playerTwo = () => {
-        let cells = document.querySelectorAll(`[id="cell"]`)
+        })
+    }
+    function playerTwo(){
         cells.forEach((cell) => {
             cell.addEventListener('click', function() {
                 if(cell.textContent == ''){
                     cell.textContent = 'O'
-                }else if (!(cell.textContent == "")){
+                }else if (!(cell.textContent == '')){
                     cell.textContent = cell.textContent
                 }
             })
         })
-    }
-        })
-    }
+}
     return {playerOne, playerTwo}
 })()
 
