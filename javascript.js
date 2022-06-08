@@ -16,23 +16,63 @@ const gameBoard = (() => {
 gameBoard.displayGrid()
 
 
-const displayController = (() => {
-    const playerOne = () => {}
-    let cells = document.querySelectorAll(`[id="cell"]`)
-    cells.forEach((cell) => {
-        cell.addEventListener('click', function() {
-            if (cell.textContent == ''){
-                cell.textContent = 'X'
-            }else if (!(cell.textContent == '')){
-                cell.textContent = cell.textContent
-            }
-
-    })
+/*const displayController = (() => {
     const playerOne = () => {
+        let cells = document.querySelectorAll(`[id="cell"]`)
+        cells.forEach((cell) => {
+            cell.addEventListener('click', function() {
+                if(cell.textContent == ''){
+                    cell.textContent = 'X'
+                }else if (!(cell.textContent == '')){
+                    cell.textContent = cell.textContent
+                }
+            })
+        })
     }
-})})
+        let cells = document.querySelectorAll(`[id="cell"]`)
+        cells.forEach((cell) => {
+            cell.addEventListener('click', function() {
+                if (cell.textContent == ''){
+                    cell.textContent = 'X'
+                }else if (!(cell.textContent == '')){
+                    cell.textContent = cell.textContent
+                }
+        })
+    const playerTwo = () => {
+        let cell
+    }
+    return{playerOne, playerTwo}
+})})()*/
 
-displayController()
+const displayController = (() => {
+    const playerOne = () => {
+        let cells = document.querySelectorAll(`[id="cell"]`)
+        cells.forEach((cell) => {
+            cell.addEventListener('click', function() {
+                if(cell.textContent == ''){
+                    cell.textContent = 'X'
+                }else if (!(cell.textContent == '')){
+                    cell.textContent = cell.textContent
+                }
+            })
+    const playerTwo = () => {
+        let cells = document.querySelectorAll(`[id="cell"]`)
+        cells.forEach((cell) => {
+            cell.addEventListener('click', function() {
+                if(cell.textContent == ''){
+                    cell.textContent = 'O'
+                }else if (!(cell.textContent == "")){
+                    cell.textContent = cell.textContent
+                }
+            })
+        })
+    }
+        })
+    }
+    return {playerOne, playerTwo}
+})()
+
+displayController.playerOne()
 
 const player = () => {
     const playerOne = () => {
