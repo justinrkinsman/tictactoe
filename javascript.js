@@ -29,16 +29,25 @@ const player = (name, selection) => {
     return {name, selection, sayHello}
 }
 
-function playerTurn() {
+function playerTwo() {
 document.addEventListener('click', function(e){
     if(e.target.textContent == ''){
-        e.target.textContent = 'X'
+        e.target.value = 'O'
+        let newGrid = gameBoard.grid
+        newGrid.splice(((e.target.id.slice(-1))-1), 1, 'O')
+    }
+    playerOne()
+})}
+
+function playerOne() {
+document.addEventListener('click', function(e){
+    if(e.target.textContent == ''){
+        e.target.value = 'X'
         let newGrid = gameBoard.grid
         newGrid.splice(((e.target.id.slice(-1))-1), 1, 'X')
-      //  playerTwo()
-      console.log(newGrid)
+       playerTwo()
     }
 })
 }
 
-playerTurn()
+playerOne()
