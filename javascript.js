@@ -1,7 +1,12 @@
 const gameBoard = (() => {
-    let grid = [];
-    for (let i = 1; i < 10; i++)
-    grid.push(document.getElementById(`cell${i}`));
+    let grid = ['', '', '', '', '', '', '', '', ''];
+    for (let i = 0; i < 9; i++) {
+    let parent = document.getElementById('grid')
+    let child = document.createElement('div')
+    child.setAttribute('id', 'cell')
+    parent.appendChild(child)
+    grid.splice(`${i}`, 1, parent.appendChild(child));
+    }
     return {
         displayGrid: function(){
             console.log(grid)
@@ -12,10 +17,16 @@ gameBoard.displayGrid()
 
 
 const displayController = (() => {
-    let cells = document.querySelectorAll(`[id^="cell"]`)
+    const playerOne = () => {}
+    let cells = document.querySelectorAll(`[id="cell"]`)
     cells.forEach((cell) => {
         cell.addEventListener('click', function() {
-            cell.textContent = 'X'
+            if (cell.textContent == ''){
+                cell.textContent = 'X'
+            }else if (!(cell.textContent == '')){
+                cell.textContent = cell.textContent
+            }
+
     })
     const playerOne = () => {
     }
