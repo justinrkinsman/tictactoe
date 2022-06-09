@@ -1,38 +1,46 @@
 const gameBoard = (() => {
     let grid = ['', '', '', '', '', '', '', '', ''];
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < grid.length; i++) {
     let parent = document.getElementById('grid')
     let child = document.createElement('div')
-    child.setAttribute('id', 'cell')
+    child.setAttribute('id', `cell${i}`)
+    child.textContent = grid[i]
     parent.appendChild(child)
-    grid.splice(`${i}`, 1, parent.appendChild(child));
+    grid.splice(`${i}`, 1, child.textContent);
     }
     return {
         displayGrid: function(){
             console.log(grid)
         },
         resetBoard: function(){
-            let cells = document.querySelectorAll(`[id="cell"]`)
+            let cells = document.querySelectorAll(`[id^="cell"]`)
             cells.forEach((cell) => {
                 cell.textContent = ''})
-        }
+                console.log(grid)
+        },
+        grid
         }
 })()
 
 gameBoard.displayGrid()
 
 const displayController = (() => {
-    let cells = document.querySelectorAll(`[id="cell"]`)
+    let cells = document.querySelectorAll(`[id^="cell"]`)
     let player_one = 1
+    //let myArray = Array.from(cells)
     function playerOne(){
         cells.forEach((cell) => {
             cell.addEventListener('click', function() {
                 if(cell.textContent == '' && player_one == 1){
                     cell.textContent = 'X'
+                  //  gameBoard.grid.splice(cells[5], 1, 'X')
+                    console.log(gameBoard.grid)
                     player_one = 0
+                    console.log(cell)
                 }else if (cell.textContent == '' && player_one == 0){
                     cell.textContent = 'O'
                     player_one = 1
+                    console.log(gameBoard.grid)
                 }
             })
         })
