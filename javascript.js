@@ -15,9 +15,11 @@ const gameBoard = (() => {
         setCell: function(index, value){
             let cells = document.querySelectorAll(`[id^="cell"]`)
             cells.forEach((cell) => {
-                cell.textContent = value
-                index = grid.index
-        })
+                cell.addEventListener('click', function(e) {
+                e.target.textContent = value        //make this only go once
+                index = grid.index              //fix this
+                })
+            })
         },
         board: function(){
             for (let i = 0; i < grid.length; i++) {
@@ -49,9 +51,10 @@ const displayController = (() => {
                     console.log(gameBoard.grid)
                 //    console.log(gameBoard.grid.indexOf(gameBoard.grid[cell.id.slice(-1)]))
                     console.log(e.target.id.slice(-1))
+                    gameBoard.setCell(e.target.id.slice(-1), 'X')
                 }else if (cell.textContent == '' && player_one == 0){
                     //cell.textContent = 'O'
-                  //  gameBoard.setCell(grid[cell.id.slice(-1)], 'O')    
+                    gameBoard.setCell(e.target.id.slice(-1), 'O')    
                     gameBoard.grid.splice(cell.id.slice(-1), 1, 'O')
                     player_one = 1
                     console.log(gameBoard.grid)
