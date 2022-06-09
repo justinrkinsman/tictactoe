@@ -22,7 +22,7 @@ const gameBoard = (() => {
         }
 })()
 
-gameBoard.displayGrid()
+//gameBoard.displayGrid()
 
 const displayController = (() => {
     let cells = document.querySelectorAll(`[id^="cell"]`)
@@ -32,13 +32,13 @@ const displayController = (() => {
         cells.forEach((cell) => {
             cell.addEventListener('click', function() {
                 if(cell.textContent == '' && player_one == 1){
-                    cell.textContent = 'X'
-                  //  gameBoard.grid.splice(cells[5], 1, 'X')
+                   // cell.textContent = 'X'
+                    gameBoard.grid.splice(cell.id.slice(-1), 1, 'X')
                     console.log(gameBoard.grid)
                     player_one = 0
-                    console.log(cell)
                 }else if (cell.textContent == '' && player_one == 0){
-                    cell.textContent = 'O'
+ //                   cell.textContent = 'O'
+                    gameBoard.grid.splice(cell.id.slice(-1), 1, 'O')
                     player_one = 1
                     console.log(gameBoard.grid)
                 }
