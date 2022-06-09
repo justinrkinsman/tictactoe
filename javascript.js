@@ -23,13 +23,16 @@ gameBoard.displayGrid()
 
 const displayController = (() => {
     let cells = document.querySelectorAll(`[id="cell"]`)
+    let player_one = 1
     function playerOne(){
         cells.forEach((cell) => {
             cell.addEventListener('click', function() {
-                if(cell.textContent == ''){
+                if(cell.textContent == '' && player_one == 1){
                     cell.textContent = 'X'
-                }else if (!(cell.textContent == '')){
-                    cell.textContent = cell.textContent
+                    player_one = 0
+                }else if (cell.textContent == '' && player_one == 0){
+                    cell.textContent = 'O'
+                    player_one = 1
                 }
             })
         })
@@ -75,5 +78,4 @@ btn2.addEventListener('click', function(){
 
 let resetBtn = document.getElementById('reset')
 resetBtn.addEventListener('click', function(){
-    gameBoard.resetBoard()
-})
+    gameBoard.resetBoard()})
