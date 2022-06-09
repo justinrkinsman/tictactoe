@@ -12,24 +12,28 @@ const gameBoard = (() => {
                 console.log(grid)
         },
         grid,
-        setCell: function(index, value){
+        setCell: function(index, value){   //index and value are working as expected
             let cells = document.querySelectorAll(`[id^="cell"]`)
             cells.forEach((cell) => {
-                cell.addEventListener('click', function(e) {
-                e.target.textContent = value        //make this only go once
-                index = grid.index              //fix this
+               // cell.addEventListener('click', function(e) {
+                //e.target.textContent = value
+                grid.splice(index, 1, value)
                 })
-            })
+               // grid.splice(index, 1, value)
+           // })
+            console.log(grid)
         },
-        board: function(){
+        board: function(){ //this function creates the grid on screen. Find a way to link this and setCell
             for (let i = 0; i < grid.length; i++) {
                 let parent = document.getElementById('grid')
                 let child = document.createElement('div')
                 child.setAttribute('id', `cell${i}`)
                 child.textContent = grid[i]
-                parent.appendChild(child)
-                grid.splice(`${i}`, 1, child.textContent);                    
+                parent.appendChild(child)                 
             }
+        },
+        getBoard: function(){
+            //function that returns a copy of the board
         }
 }})()
 
@@ -43,38 +47,26 @@ const displayController = (() => {
     function playerOne(){
         cells.forEach((cell) => {
             cell.addEventListener('click', function(e) {
-                if(cell.textContent == '' && player_one == 1){
-                    //cell.textContent = 'X'
-                    //gameBoard.setCell(grid[cell.id.slice(-1)], 'X')
-                    gameBoard.grid.splice(cell.id.slice(-1), 1, 'X')
-                    player_one = 0
-                    console.log(gameBoard.grid)
-                //    console.log(gameBoard.grid.indexOf(gameBoard.grid[cell.id.slice(-1)]))
-                    console.log(e.target.id.slice(-1))
+                if(e.target.textContent == '' && player_one == 1){
                     gameBoard.setCell(e.target.id.slice(-1), 'X')
-                }else if (cell.textContent == '' && player_one == 0){
-                    //cell.textContent = 'O'
-                    gameBoard.setCell(e.target.id.slice(-1), 'O')    
-                    gameBoard.grid.splice(cell.id.slice(-1), 1, 'O')
+                 //   gameBoard.grid.splice(cell.id.slice(-1), 1, 'X')
+                    gameBoard.board()
+                    player_one = 0
+                  //  e.target.textContent = 'X'
+       //             console.log(gameBoard.grid)
+        //            console.log(e.target.id.slice(-1))
+                }else if (e.target.textContent == '' && player_one == 0){
+                    gameBoard.setCell(e.target.id.slice(-1), 'O')
+                 //   e.target.textContent = 'O'  
+               //     gameBoard.grid.splice(cell.id.slice(-1), 1, 'O')
+                    gameBoard.board()     
                     player_one = 1
-                    console.log(gameBoard.grid)
-                 //   console.log(gameBoard.grid.indexOf(gameBoard.grid[cell.id.slice(-1)]))
-                    console.log(e.target.id.slice(-1))
+        //            console.log(gameBoard.grid)
+         //           console.log(e.target.id.slice(-1))
                 }
             })
         })
     }
-    function playerTwo(){
-        cells.forEach((cell) => {
-            cell.addEventListener('click', function() {
-                if(cell.textContent == ''){
-                    cell.textContent = 'O'
-                }else if (!(cell.textContent == '')){
-                    cell.textContent = cell.textContent
-                }
-            })
-        })
-}
     return {playerOne, playerTwo}
 })()
 
@@ -107,5 +99,9 @@ let resetBtn = document.getElementById('reset')
 resetBtn.addEventListener('click', function(){
     gameBoard.resetBoard()
 gameBoard.grid = ['','','','','','','','', '']
-}
-    )
+})
+
+let showGrid = document.getElementById('showGrid')
+showGrid.addEventListener('click', function(){
+    console.log(gameBoard.grid)
+})
