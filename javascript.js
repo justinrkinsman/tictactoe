@@ -10,7 +10,13 @@ const gameBoard = (() => {
     return {
         displayGrid: function(){
             console.log(grid)
-        }}
+        },
+        resetBoard: function(){
+            let cells = document.querySelectorAll(`[id="cell"]`)
+            cells.forEach((cell) => {
+                cell.textContent = ''})
+        }
+        }
 })()
 
 gameBoard.displayGrid()
@@ -66,3 +72,8 @@ btn1.addEventListener('click', function(){
 let btn2 = document.getElementById('submit2')
 btn2.addEventListener('click', function(){
     console.log(player2.playerTwo())})
+
+let resetBtn = document.getElementById('reset')
+resetBtn.addEventListener('click', function(){
+    gameBoard.resetBoard()
+})
