@@ -109,8 +109,12 @@ const displayController = (() => {
                 (gameBoard.grid[0] == 'X' && gameBoard.grid[4] == 'X' && gameBoard.grid[8] == 'X') ||
                 (gameBoard.grid[2] == 'X' && gameBoard.grid[4] == 'X' && gameBoard.grid[6])){
                 let display = document.getElementById('winner')
-                display.value = (`${playerI.name} wins!`)
-                displayController.resetBoard()
+                if (playerI.name == ""){
+                    display.value = ('Player1 wins!')
+                }else{
+                    display.value = (`${playerI.name} wins!`)
+                }
+                    displayController.resetBoard()
                 //console.log(gameBoard.grid)
                 playerI.score++
                 console.log(playerI.score)
@@ -124,7 +128,11 @@ const displayController = (() => {
             (gameBoard.grid[0] == 'O' && gameBoard.grid[4] == 'O' && gameBoard.grid[8] == 'O') ||
             (gameBoard.grid[2] == 'O' && gameBoard.grid[4] == 'O' && gameBoard.grid[6])){
                 let display = document.getElementById('winner')
-                display.value = (`${playerII.name} wins!`)
+                if (playerI.name == ""){
+                    display.value = ('Player2 wins!')
+                }else{
+                    display.value = (`${playerII.name} wins!`)
+                }
                 displayController.resetBoard()
                 //console.log(gameBoard.grid)
                 playerII.score++
