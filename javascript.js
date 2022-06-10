@@ -15,7 +15,7 @@ const gameBoard = (() => {
         setCell: function(index, value){   //index and value are working as expected
             let cells = document.querySelectorAll(`[id^="cell${index}"]`)
             cells.forEach((cell) => {
-               // cell.addEventListener('click', function(e) {
+                //cell.addEventListener('click', function(e) {
                 //e.target.textContent = value
                 grid.splice(index, 1, value)
                 let newCell = Array.from(cells)
@@ -24,13 +24,13 @@ const gameBoard = (() => {
                 //let newCell = (`cells${index}`)
                 //child.setAttribute('id', `cell${index}`)
                 cell.textContent = value
-                console.log(cell)
+                //console.log(cell)
                 //console.log(value)
                 //console.log(grid[index])
                 //parent.appendChild(child) 
                 })
-               // grid.splice(index, 1, value)
-           // })
+                //grid.splice(index, 1, value)
+            //})
             console.log(grid)
         },
         board: function(){ //this function creates the grid on screen. Find a way to link this and setCell
@@ -43,8 +43,9 @@ const gameBoard = (() => {
             }
         },
         getBoard: function(){
-            //function that returns a copy of the board
-        }
+            console.log(grid)
+        },
+
 }})()
 
 gameBoard.board()
@@ -64,12 +65,14 @@ const displayController = (() => {
                     gameBoard.setCell(e.target.id.slice(-1), 'X')
                     //parent.removeChild(cell)
                     //console.log(cells)
-                 //   gameBoard.grid.splice(cell.id.slice(-1), 1, 'X')
+                    //gameBoard.grid.splice(cell.id.slice(-1), 1, 'X')
                     //gameBoard.board()
                     player_one = 0
-                  //  e.target.textContent = 'X'
-       //             console.log(gameBoard.grid)
-        //            console.log(e.target.id.slice(-1))
+                    winner()
+                    //console.log(gameBoard.grid)
+                    //e.target.textContent = 'X'
+                    //console.log(gameBoard.grid)
+                    //console.log(e.target.id.slice(-1))
                 }else if (e.target.textContent == '' && player_one == 0){
                     gameBoard.setCell(e.target.id.slice(-1), 'O')
                     //e.target.textContent = 'O'  
@@ -77,13 +80,37 @@ const displayController = (() => {
                     //parent.removeChild(cell)     
                     //gameBoard.board()     
                     player_one = 1
-        //            console.log(gameBoard.grid)
-         //           console.log(e.target.id.slice(-1))
+                    winner()
+                    //console.log(gameBoard.grid)
+                    //console.log(gameBoard.grid)
+                    //console.log(e.target.id.slice(-1))
                 }
             })
         })
     }
-    return {playerOne, playerTwo}
+    function winner(){
+       //gameBoard.getBoard()
+       if ((gameBoard.grid[0] == 'X' && gameBoard.grid[1] == 'X' && gameBoard.grid[2] == 'X') ||
+        (gameBoard.grid[3] == 'X' && gameBoard.grid[4] == 'X' && gameBoard.grid[5] == 'X') ||
+        (gameBoard.grid[6] == 'X' && gameBoard.grid[7] == 'X' && gameBoard.grid[8] == 'X') ||
+        (gameBoard.grid[0] == 'X' && gameBoard.grid[3] == 'X' && gameBoard.grid[6] == 'X') ||
+        (gameBoard.grid[1] == 'X' && gameBoard.grid[4] == 'X' && gameBoard.grid[7] == 'X') ||
+        (gameBoard.grid[2] == 'X' && gameBoard.grid[5] == 'X' && gameBoard.grid[8] == 'X') ||
+        (gameBoard.grid[0] == 'X' && gameBoard.grid[4] == 'X' && gameBoard.grid[8] == 'X') ||
+        (gameBoard.grid[2] == 'X' && gameBoard.grid[4] == 'X' && gameBoard.grid[6])){
+           console.log(`Player1 wins!`) //${player1.name}
+       }else if ((gameBoard.grid[0] == 'O' && gameBoard.grid[1] == 'O' && gameBoard.grid[2] == 'O') ||
+       (gameBoard.grid[3] == 'O' && gameBoard.grid[4] == 'O' && gameBoard.grid[5] == 'O') ||
+       (gameBoard.grid[6] == 'O' && gameBoard.grid[7] == 'O' && gameBoard.grid[8] == 'O') ||
+       (gameBoard.grid[0] == 'O' && gameBoard.grid[3] == 'O' && gameBoard.grid[6] == 'O') ||
+       (gameBoard.grid[1] == 'O' && gameBoard.grid[4] == 'O' && gameBoard.grid[7] == 'O') ||
+       (gameBoard.grid[2] == 'O' && gameBoard.grid[5] == 'O' && gameBoard.grid[8] == 'O') ||
+       (gameBoard.grid[0] == 'O' && gameBoard.grid[4] == 'O' && gameBoard.grid[8] == 'O') ||
+       (gameBoard.grid[2] == 'O' && gameBoard.grid[4] == 'O' && gameBoard.grid[6])){
+           console.log('Player2 wins!')
+       }
+    }
+    return {playerOne, winner}
 })()
 
 displayController.playerOne()
@@ -114,7 +141,7 @@ btn2.addEventListener('click', function(){
 let resetBtn = document.getElementById('reset')
 resetBtn.addEventListener('click', function(){
     gameBoard.resetBoard()
-gameBoard.grid = ['','','','','','','','', '']
+    //gameBoard.grid = ['','','','','','','','', '']
 })
 
 let showGrid = document.getElementById('showGrid')
