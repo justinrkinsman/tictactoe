@@ -101,6 +101,9 @@ const displayController = (() => {
            console.log(`Player1 wins!`) //${player1.name}
            displayController.resetBoard()
            console.log(gameBoard.grid)
+           let playerI = player1.playerOne()
+           playerI.score++
+           console.log(playerI.score)
        }else if ((gameBoard.grid[0] == 'O' && gameBoard.grid[1] == 'O' && gameBoard.grid[2] == 'O') ||
        (gameBoard.grid[3] == 'O' && gameBoard.grid[4] == 'O' && gameBoard.grid[5] == 'O') ||
        (gameBoard.grid[6] == 'O' && gameBoard.grid[7] == 'O' && gameBoard.grid[8] == 'O') ||
@@ -111,6 +114,9 @@ const displayController = (() => {
        (gameBoard.grid[2] == 'O' && gameBoard.grid[4] == 'O' && gameBoard.grid[6])){
            console.log('Player2 wins!') //${player2.name}
            displayController.resetBoard()
+           let playerII = player2.playerTwo()
+           playerII.score++
+           console.log(playerI.score)
        }
     }
     function resetBoard() {
