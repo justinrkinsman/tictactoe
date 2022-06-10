@@ -90,6 +90,8 @@ const displayController = (() => {
     }
     function winner(){
        //gameBoard.getBoard()
+       let playerI = player1.playerOne()
+       let playerII = player2.playerTwo()
        if ((gameBoard.grid[0] == 'X' && gameBoard.grid[1] == 'X' && gameBoard.grid[2] == 'X') ||
         (gameBoard.grid[3] == 'X' && gameBoard.grid[4] == 'X' && gameBoard.grid[5] == 'X') ||
         (gameBoard.grid[6] == 'X' && gameBoard.grid[7] == 'X' && gameBoard.grid[8] == 'X') ||
@@ -98,11 +100,10 @@ const displayController = (() => {
         (gameBoard.grid[2] == 'X' && gameBoard.grid[5] == 'X' && gameBoard.grid[8] == 'X') ||
         (gameBoard.grid[0] == 'X' && gameBoard.grid[4] == 'X' && gameBoard.grid[8] == 'X') ||
         (gameBoard.grid[2] == 'X' && gameBoard.grid[4] == 'X' && gameBoard.grid[6])){
-           console.log(`Player1 wins!`) //${player1.name}
+           console.log(`${playerI.name} wins!`) //${player1.name}
            displayController.resetBoard()
            console.log(gameBoard.grid)
-           let playerI = player1.playerOne()
-           playerI.score++
+          // playerI.score++
            console.log(playerI.score)
        }else if ((gameBoard.grid[0] == 'O' && gameBoard.grid[1] == 'O' && gameBoard.grid[2] == 'O') ||
        (gameBoard.grid[3] == 'O' && gameBoard.grid[4] == 'O' && gameBoard.grid[5] == 'O') ||
@@ -112,20 +113,33 @@ const displayController = (() => {
        (gameBoard.grid[2] == 'O' && gameBoard.grid[5] == 'O' && gameBoard.grid[8] == 'O') ||
        (gameBoard.grid[0] == 'O' && gameBoard.grid[4] == 'O' && gameBoard.grid[8] == 'O') ||
        (gameBoard.grid[2] == 'O' && gameBoard.grid[4] == 'O' && gameBoard.grid[6])){
-           console.log('Player2 wins!') //${player2.name}
+           console.log(`${playerII.name} wins!`) //${player2.name}
            displayController.resetBoard()
-           let playerII = player2.playerTwo()
-           playerII.score++
-           console.log(playerI.score)
+         //  playerII.score++
+           console.log(playerII.score)
        }
     }
     function resetBoard() {
-        let cells = document.querySelectorAll(`[id^="cell"]`)
-        cells.forEach((cell) => {
-            cell.textContent = ''
-            gameBoard.grid = ['','','','','','','','','']})
-            console.log(gameBoard.grid)
-    }
+        let playerI = player1.playerOne()
+       let playerII = player2.playerTwo()
+        //let cells = document.querySelectorAll(`[id^="cell"]`)
+        //cells.forEach((cell) => {
+            //cell.textContent = ''
+          //  gameBoard.grid = ['','','','','','','','','']})
+            gameBoard.setCell(0, '')
+            gameBoard.setCell(1, '')
+            gameBoard.setCell(2, '')
+            gameBoard.setCell(3, '')
+            gameBoard.setCell(4, '')
+            gameBoard.setCell(5, '')
+            gameBoard.setCell(6, '')
+            gameBoard.setCell(7, '')
+            gameBoard.setCell(8, '')
+            playerI.score++
+            playerII.score++
+        }//)
+           // console.log(gameBoard.grid)
+   // }
     return {playerOne, winner, resetBoard}
 })()
 
