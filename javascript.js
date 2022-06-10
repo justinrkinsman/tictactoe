@@ -13,22 +13,27 @@ const gameBoard = (() => {
         },*/
         grid,
         setCell: function(index, value){   //index and value are working as expected
-            let cells = document.querySelectorAll(`[id^="cell${index}"]`)
-            cells.forEach((cell) => {
+            let cells = document.querySelector(`[id^="cell${index}"]`)
+            //cells.forEach((cell) => {
                 //cell.addEventListener('click', function(e) {
                 //e.target.textContent = value
                 grid.splice(index, 1, value)
-                let newCell = Array.from(cells)
+                //let newCell = Array.from(cells)
                 //let parent = document.getElementById('grid')
                 //let child = document.createElement('div')
                 //let newCell = (`cells${index}`)
                 //child.setAttribute('id', `cell${index}`)
-                cell.textContent = value
+                cells.textContent = value
+                if (value == 'X'){
+                    document.querySelector(`[id^="cell${index}"]`).style.color = 'red'
+                }else if (value == 'O'){
+                    document.querySelector(`[id^="cell${index}"]`).style.color = 'white'
+                }
                 //console.log(cell)
                 //console.log(value)
                 //console.log(grid[index])
                 //parent.appendChild(child) 
-                })
+                //})
                 //grid.splice(index, 1, value)
             //})
             //console.log(grid)
@@ -103,7 +108,8 @@ const displayController = (() => {
                 (gameBoard.grid[2] == 'X' && gameBoard.grid[5] == 'X' && gameBoard.grid[8] == 'X') ||
                 (gameBoard.grid[0] == 'X' && gameBoard.grid[4] == 'X' && gameBoard.grid[8] == 'X') ||
                 (gameBoard.grid[2] == 'X' && gameBoard.grid[4] == 'X' && gameBoard.grid[6])){
-                alert(`${playerI.name} wins!`) //${player1.name}
+                let display = document.getElementById('winner')
+                display.value = (`${playerI.name} wins!`)
                 displayController.resetBoard()
                 //console.log(gameBoard.grid)
                 playerI.score++
@@ -117,7 +123,8 @@ const displayController = (() => {
             (gameBoard.grid[2] == 'O' && gameBoard.grid[5] == 'O' && gameBoard.grid[8] == 'O') ||
             (gameBoard.grid[0] == 'O' && gameBoard.grid[4] == 'O' && gameBoard.grid[8] == 'O') ||
             (gameBoard.grid[2] == 'O' && gameBoard.grid[4] == 'O' && gameBoard.grid[6])){
-                alert(`${playerII.name} wins!`) //${player2.name}
+                let display = document.getElementById('winner')
+                display.value = (`${playerII.name} wins!`)
                 displayController.resetBoard()
                 //console.log(gameBoard.grid)
                 playerII.score++
@@ -126,8 +133,8 @@ const displayController = (() => {
        }
     }}
     function resetBoard() {
-        let playerI = player1.playerOne()
-        let playerII = player2.playerTwo()
+        //let playerI = player1.playerOne()
+        //let playerII = player2.playerTwo()
         //let cells = document.querySelectorAll(`[id^="cell"]`)
         //cells.forEach((cell) => {
             //cell.textContent = ''
