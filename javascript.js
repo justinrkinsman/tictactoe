@@ -100,6 +100,7 @@ const displayController = (() => {
         (gameBoard.grid[2] == 'X' && gameBoard.grid[4] == 'X' && gameBoard.grid[6])){
            console.log(`Player1 wins!`) //${player1.name}
            displayController.resetBoard()
+           console.log(gameBoard.grid)
        }else if ((gameBoard.grid[0] == 'O' && gameBoard.grid[1] == 'O' && gameBoard.grid[2] == 'O') ||
        (gameBoard.grid[3] == 'O' && gameBoard.grid[4] == 'O' && gameBoard.grid[5] == 'O') ||
        (gameBoard.grid[6] == 'O' && gameBoard.grid[7] == 'O' && gameBoard.grid[8] == 'O') ||
@@ -127,11 +128,13 @@ displayController.playerOne()
 const player = () => {
     const playerOne = () => {
         let name = document.getElementById('playerOne').value
-        return{name}
+        let score = 0
+        return{name, score}
     }
     const playerTwo = () => {
         let name = document.getElementById('playerTwo').value
-        return{name}
+        let score = 0
+        return{name, score}
     }
     return {playerOne, playerTwo}
 }
@@ -141,11 +144,13 @@ const player2 = player()
 
 let btn1 = document.getElementById('submit1')
 btn1.addEventListener('click', function(){
-    console.log(player1.playerOne())})
+    let playerI = player1.playerOne()
+    console.log(playerI.name)})
 
 let btn2 = document.getElementById('submit2')
 btn2.addEventListener('click', function(){
-    console.log(player2.playerTwo())})
+    let playerII = player2.playerTwo()
+    console.log(playerII.name)})
 
 let resetBtn = document.getElementById('reset')
 resetBtn.addEventListener('click', function(){
