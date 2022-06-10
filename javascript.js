@@ -13,11 +13,21 @@ const gameBoard = (() => {
         },
         grid,
         setCell: function(index, value){   //index and value are working as expected
-            let cells = document.querySelectorAll(`[id^="cell"]`)
+            let cells = document.querySelectorAll(`[id^="cell${index}"]`)
             cells.forEach((cell) => {
                // cell.addEventListener('click', function(e) {
                 //e.target.textContent = value
                 grid.splice(index, 1, value)
+                let newCell = Array.from(cells)
+                //let parent = document.getElementById('grid')
+                //let child = document.createElement('div')
+                //let newCell = (`cells${index}`)
+                //child.setAttribute('id', `cell${index}`)
+                cell.textContent = value
+                console.log(cell)
+                //console.log(value)
+                //console.log(grid[index])
+                //parent.appendChild(child) 
                 })
                // grid.splice(index, 1, value)
            // })
@@ -29,7 +39,7 @@ const gameBoard = (() => {
                 let child = document.createElement('div')
                 child.setAttribute('id', `cell${i}`)
                 child.textContent = grid[i]
-                parent.appendChild(child)                 
+                parent.appendChild(child)              
             }
         },
         getBoard: function(){
@@ -42,24 +52,30 @@ gameBoard.board()
 const displayController = (() => {
     let cells = document.querySelectorAll(`[id^="cell"]`)
     let player_one = 1
+    //let parent = document.getElementById('grid')
     gameBoard.grid
     //let myArray = Array.from(cells)
     function playerOne(){
         cells.forEach((cell) => {
             cell.addEventListener('click', function(e) {
-                if(e.target.textContent == '' && player_one == 1){
+                if (!(e.target.textContent == "")){
+                    e.target.textContent = e.target.textContent
+                }else if(e.target.textContent == '' && player_one == 1){
                     gameBoard.setCell(e.target.id.slice(-1), 'X')
+                    //parent.removeChild(cell)
+                    //console.log(cells)
                  //   gameBoard.grid.splice(cell.id.slice(-1), 1, 'X')
-                    gameBoard.board()
+                    //gameBoard.board()
                     player_one = 0
                   //  e.target.textContent = 'X'
        //             console.log(gameBoard.grid)
         //            console.log(e.target.id.slice(-1))
                 }else if (e.target.textContent == '' && player_one == 0){
                     gameBoard.setCell(e.target.id.slice(-1), 'O')
-                 //   e.target.textContent = 'O'  
-               //     gameBoard.grid.splice(cell.id.slice(-1), 1, 'O')
-                    gameBoard.board()     
+                    //e.target.textContent = 'O'  
+                    //gameBoard.grid.splice(cell.id.slice(-1), 1, 'O')
+                    //parent.removeChild(cell)     
+                    //gameBoard.board()     
                     player_one = 1
         //            console.log(gameBoard.grid)
          //           console.log(e.target.id.slice(-1))
