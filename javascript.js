@@ -156,6 +156,7 @@ const displayController = (() => {
             gameBoard.setCell(6, '')
             gameBoard.setCell(7, '')
             gameBoard.setCell(8, '')
+            
         }//)
            // console.log(gameBoard.grid)
    // }
@@ -201,3 +202,12 @@ resetBtn.addEventListener('click', function(){
 showGrid.addEventListener('click', function(){
     console.log(gameBoard.grid)
 })*/
+
+function computerPlay(){
+let randomItem = gameBoard.grid[Math.floor(Math.random()*gameBoard.grid.length)]
+if (randomItem == ''){
+    console.log('lmao')
+}else{
+    console.log(randomItem)
+}
+}
