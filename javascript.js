@@ -74,6 +74,7 @@ const displayController = (() => {
                     //gameBoard.board()
                     player_one = 0
                     winner()
+                    //computerPlay()        //computer play function
                     //console.log(gameBoard.grid)
                     //e.target.textContent = 'X'
                     //console.log(gameBoard.grid)
@@ -136,8 +137,8 @@ const displayController = (() => {
                 displayController.resetBoard()
                 //console.log(gameBoard.grid)
                 playerII.score++
-                console.log(playerII.score)
-                console.log(i)
+               // console.log(playerII.score)
+               // console.log(i)
        }
     }}
     function resetBoard() {
@@ -157,10 +158,20 @@ const displayController = (() => {
             gameBoard.setCell(7, '')
             gameBoard.setCell(8, '')
             
-        }//)
-           // console.log(gameBoard.grid)
-   // }
-    return {playerOne, winner, resetBoard}
+        }
+        function computerPlay(){
+            let randomItem = gameBoard.grid[Math.floor(Math.random()*gameBoard.grid.length)]
+            if (randomItem == ''){
+                console.log(Math.floor(Math.random()*gameBoard.grid.length))
+                gameBoard.setCell(Math.floor(Math.random()*gameBoard.grid.length), 'O')
+            }else{
+                //console.log(Math.floor(Math.random()*gameBoard.grid.length))
+                //computerPlay()
+                //console.log(randomItem)
+            }
+        }
+    
+    return {playerOne, winner, resetBoard, computerPlay}
 })()
 
 displayController.playerOne()
@@ -202,12 +213,3 @@ resetBtn.addEventListener('click', function(){
 showGrid.addEventListener('click', function(){
     console.log(gameBoard.grid)
 })*/
-
-function computerPlay(){
-let randomItem = gameBoard.grid[Math.floor(Math.random()*gameBoard.grid.length)]
-if (randomItem == ''){
-    console.log('lmao')
-}else{
-    console.log(randomItem)
-}
-}
